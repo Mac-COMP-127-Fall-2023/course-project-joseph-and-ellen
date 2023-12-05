@@ -1,4 +1,4 @@
-public class Plant {
+public class PlantManager {
     // give specific conditions
     // to each plant: How much water needed, what too much water is,
     // How much phosphorous/nitrogen/sulfur/etc. needed, ph of soil,
