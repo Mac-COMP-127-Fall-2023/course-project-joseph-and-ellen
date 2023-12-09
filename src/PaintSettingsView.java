@@ -16,7 +16,7 @@ public class PaintSettingsView extends GraphicsGroup {
     private TextField redField, greenField, blueField, sizeField;
 
     public PaintSettingsView(Color initialColor, int initialSize) {
-        colorDisplay = new Rectangle(0, 0, 100, 100);
+        colorDisplay = new Rectangle(-50, 0, 150, 100);
         add(colorDisplay);
 
         redField = addComponentField("Red", colorDisplay, 8);
@@ -27,7 +27,7 @@ public class PaintSettingsView extends GraphicsGroup {
         greenField.onChange((text) -> updateColorFromField(1, greenField));
         blueField .onChange((text) -> updateColorFromField(2, blueField));
 
-        sizeField = addComponentField("Size", blueField, 16);
+        sizeField = addComponentField("Size", blueField, 4);
         sizeField.onChange((text) -> updateBrushSizeFromField());
         sizeField.setText(String.valueOf(initialSize));
 
