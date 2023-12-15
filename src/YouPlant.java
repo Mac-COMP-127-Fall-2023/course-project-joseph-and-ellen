@@ -25,7 +25,7 @@ public class YouPlant {
     private GraphicsGroup paintLayer;
     private double xpos = 0;
     private double ypos = 150;
-    private double SOIL_WIDTH = 800;
+    private double SOIL_WIDTH = 800; 
     private double SOIL_HEIGHT = 500;
     private int MAX_DAYS = 100;
     private int numDays;

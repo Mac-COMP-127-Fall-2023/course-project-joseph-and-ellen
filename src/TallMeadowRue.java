@@ -3,13 +3,13 @@ import edu.macalester.graphics.Image;
 
 
 
-public class ShagBarkHickory extends Critter {
+public class TallMeadowRue extends Critter {
 
 
     
     protected void buildGraphics() {
-        Image shagbarkhickory = new Image(0, 0, "shagbarkhickory_stage1.png");
-        getGraphics().add(shagbarkhickory);
+        Image stjohnswort = new Image(0, 0, "stjohnswort_stage1.png");
+        getGraphics().add(stjohnswort);
        
     }
     // make method to replace stage 1 with stage 2
@@ -18,4 +18,18 @@ public class ShagBarkHickory extends Critter {
 
     // make method to replace any stage with dead
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
