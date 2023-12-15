@@ -9,6 +9,8 @@ public class Soil extends Rectangle {
         super(xpos, ypos, width, height);
     
 
-    }}
+    }
+
+}
 
     

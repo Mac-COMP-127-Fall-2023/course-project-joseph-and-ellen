@@ -18,6 +18,8 @@ public class YouPlant {
     private double ypos = 150;
     private double SOIL_WIDTH = 800;
     private double SOIL_HEIGHT = 500;
+    private int MAX_DAYS = 100;
+    private int numDays;
 
     public YouPlant() {
         mainScreen();
@@ -97,15 +99,27 @@ public class YouPlant {
             @Override
             public void run() {
                 drawingKit();
+
             }
         };
 
         drawYourPlantButton.onClick(drawingKitRunnable);
     }
 
-     //----------------------Add your plant button---------------------//
-
-
+     //----------------------Go to the next day button---------------------//
+     private void nextDayButton() {
+        Button nextDayButton = new Button("Go to the next day");
+        nextDayButton.setPosition(15, 10);
+        canvas1.add(nextDayButton);
+        Runnable drawingKitRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // numDays += 1;
+                // for (Plant p : Plants)
+                
+                // if all Environmental Conditions (except pH)
+            }
+        };
 
      
 
