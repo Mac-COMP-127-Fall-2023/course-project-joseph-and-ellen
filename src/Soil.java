@@ -7,6 +7,8 @@ public class Soil extends Rectangle {
 
     public Soil(double xpos, double ypos, double width, double height) {
         super(xpos, ypos, width, height);
+
+        
     
 
     }
