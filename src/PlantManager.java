@@ -10,7 +10,7 @@ public class PlantManager {
     private final double ideallMagnesium; // in ppm
     private final double idealSulphur; // in ppm
     private final double idealPH; // 0 = acidic, 1= neutral, 2= basic
-    private final double idealSoilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
+    private final double idealSoilType; // 1 is sand, 2 is loam, 3 is silt, 4 is clay
     private ArrayList<ArrayList<Double>> plantFactors;
 
     PlantManager(idealWater, idealSun, idealNitrogen, idealPhosphorous, idealPotassium, idealCalcium, idealMagnesium, idealSulphur, idealPH, idealSoilType) {
@@ -18,7 +18,7 @@ public class PlantManager {
     }
 
     public ArrayList<Double> americanPlumFactors() {
-        idealWater = 25.4;
+        idealWater = 30;
         idealSun = 6;
         idealNitrogen = 60;
         idealPhosphorous = 60;
@@ -31,23 +31,23 @@ public class PlantManager {
     }
 
     public ArrayList<Double> blueStemFactors() {
-        idealWater = 25.4;
+        idealWater = 20;
         idealSun = 6;
-        idealNitrogen = 60;
-        idealPhosphorous = 60;
+        idealNitrogen = 40;
+        idealPhosphorous = 50;
         idealPotassium = 60;
         idealCalcium = 485;
         ideallMagnesium = 50;
         idealSulphur = 15;
         idealPH = 1;
-        idealSoilType = 1;
+        idealSoilType = 2;
     }
 
     public ArrayList<Double> commonMilkWeedFactors() {
-        idealWater = 25.4;
-        idealSun = 6;
-        idealNitrogen = 60;
-        idealPhosphorous = 60;
+        idealWater = 38.1;
+        idealSun = 7;
+        idealNitrogen = 50;
+        idealPhosphorous = 50;
         idealPotassium = 60;
         idealCalcium = 485;
         ideallMagnesium = 50;
