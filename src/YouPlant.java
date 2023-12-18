@@ -8,7 +8,7 @@ import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.FontStyle;
 
 import java.awt.geom.Rectangle2D;
-// import edu.macalester.comp127.critters.Critter;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.GraphicsObject;
@@ -22,7 +22,7 @@ public class YouPlant {
 
     private CanvasWindow canvas, canvas1;
 
-    private GraphicsGroup paintLayer;
+    
     private double xpos = 0;
     private double ypos = 150;
     private double SOIL_WIDTH = 800;
@@ -33,6 +33,8 @@ public class YouPlant {
     private final Random rand = new Random();
     private List<Class<? extends Critter>> critterClasses;
     private static final boolean CAPTIONS_ENABLED = false;
+
+    
 
 
 
@@ -48,68 +50,90 @@ public class YouPlant {
     }
  
 
- private Critter addNewCritter() {
-    // Critter critter = createRandomCritter();
-    Critter critter = createChoosenCritter();
+
+
+private Critter addNewCritter(int buttonIndex) {
+    Critter critter = createChoosenCritter(buttonIndex);
 
     GraphicsObject g = critter.getGraphics();
     Point point = randLocationFor(critter);
     g.setPosition(point.getX(), point.getY());
     chooseNewGoal(critter);
-    // critter.setSpeed(rand.nextDouble() * 20 + 10);
 
     canvas.add(critter.getGraphics());
     critters.add(critter);
     return critter;
 }
 
+
+
 private Point randLocationFor(Critter critter) {
     GraphicsObject g = critter.getGraphics();
     Rectangle2D bounds = g.getBounds();
-    return new Point(
-        rand.nextDouble() * (canvas.getWidth() - (bounds.getWidth() + critter.getxOffset())),
-        rand.nextDouble() * (canvas.getHeight() - (bounds.getHeight() + critter.getyOffset()))
-    );
+    double maxX = canvas.getWidth() - (bounds.getWidth() + critter.getxOffset());
+    double maxY = canvas.getHeight() - (bounds.getHeight() + critter.getyOffset());
+    double x = Math.max(xpos, Math.min(rand.nextDouble() * maxX, xpos + SOIL_WIDTH - bounds.getWidth()));
+    double y = Math.max(ypos, Math.min(rand.nextDouble() * maxY, ypos + SOIL_HEIGHT - bounds.getHeight()));
+
+    return new Point(x, y);
 }
 
-private Critter createRandomCritter() {
-        Class<? extends Critter> critterClass = critterClasses.get(rand.nextInt(critterClasses.size()));
-        try {
-            Critter critter = critterClass.getConstructor().newInstance();
-            if (CAPTIONS_ENABLED) {
-                GraphicsText caption = new GraphicsText(critterClass.getSimpleName());
-                caption.setFont("Avenir Next", FontStyle.PLAIN, 11);
-                critter.getGraphics().add(caption);
-                caption.setCenter(
-                    critter.getGraphics().getCenter().getX(),
-                    critter.getGraphics().getHeight());
-            }
-            return critter;
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot instantiate " + critterClass, e);
-        }
+
+private Critter createChoosenCritter(int buttonIndex) {
+    Class<? extends Critter> critterClass;
+
+    switch (buttonIndex) {
+        case 0:
+            critterClass = critterClasses.get(2); // plant 0
+            break;
+        case 1:
+            critterClass = critterClasses.get(8); // plant 1    
+            break;
+        case 2:
+            critterClass = critterClasses.get(6); // plant 2     
+            break;
+        case 3:
+            critterClass = critterClasses.get(3); // plant 3   
+            break;
+        case 4:
+            critterClass = critterClasses.get(5); // plant 4      
+            break;
+        case 5:
+            critterClass = critterClasses.get(7); // plant 5   
+            break;
+        case 6:
+            critterClass = critterClasses.get(4); // plant 6
+            break;
+        case 7:
+            critterClass = critterClasses.get(9); // plant 7    
+            break;
+        case 8:
+            critterClass = critterClasses.get(1); // plant 8
+            break;
+        case 9:
+            critterClass = critterClasses.get(0); // plant 9
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid button index");
     }
 
-
-
-
-    private Critter createChoosenCritter(){
-        Class<? extends Critter> critterClass = critterClasses.get(0);
-        try {
-            Critter critter = critterClass.getConstructor().newInstance();
-            if (CAPTIONS_ENABLED) {
-                GraphicsText caption = new GraphicsText(critterClass.getSimpleName());
-                caption.setFont("Avenir Next", FontStyle.PLAIN, 11);
-                critter.getGraphics().add(caption);
-                caption.setCenter(
-                    critter.getGraphics().getCenter().getX(),
-                    critter.getGraphics().getHeight());
-            }
-            return critter;
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot instantiate " + critterClass, e);
+    try {
+        Critter critter = critterClass.getConstructor().newInstance();
+        if (CAPTIONS_ENABLED) {
+            GraphicsText caption = new GraphicsText(critterClass.getSimpleName());
+            caption.setFont("Avenir Next", FontStyle.PLAIN, 11);
+            critter.getGraphics().add(caption);
+            caption.setCenter(
+                critter.getGraphics().getCenter().getX(),
+                critter.getGraphics().getHeight());
         }
+        return critter;
+    } catch (Exception e) {
+        throw new RuntimeException("Cannot instantiate " + critterClass, e);
     }
+}
+
+
 
 
 
@@ -163,33 +187,16 @@ private Critter createRandomCritter() {
         canvas.add(soil);
 
         
-        // loadCritterClasses();
-        // critters = new ArrayList<>();
-        // for (int n = 0; n < 4; n++)
-        // addNewCritter();
+       
 
        
 
 
         addchooseYourPlantButton();
 
-        
+        // nextDayButton();
  
     }
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-
 
 
     //--------------PLANT OPTIONS---------------------//
@@ -210,47 +217,230 @@ private Critter createRandomCritter() {
 
 
 
-private void plantOptions(){
+    private void plantOptions() {
+        canvas1 = new CanvasWindow("Plants", 250, 250);
+        //-------PLANT 1------//
+        Button americanplumButton = new Button("American Plum");
+        americanplumButton.setPosition(5,10);
+        canvas1.add(americanplumButton);
+        
+        Image americanplum = new Image(10, 40, "americanplum_stage1.png");
+        canvas1.add(americanplum);
+        
 
-    canvas1 = new CanvasWindow("Plants", 250, 250);
-    Button americanplumButton = new Button("American Plum");
-    americanplumButton.setPosition(5,10);
-    canvas1.add(americanplumButton);
-    Image americanplum = new Image(0, 0, "americanplum_stage1.png");
-    canvas1.add(americanplum);
+        //-------PLANT 2------//
+        Button bluestemButton = new Button("Bluestem");
+        bluestemButton.setPosition(155,10);
+        canvas1.add(bluestemButton);
+        
+        Image bluestem = new Image(160, 40, "bluestem_stage1.png");
+        canvas1.add(bluestem);
+
+
+        //-------PLANT 3------//
+        Button commonmilkweedButton = new Button("Milk weed");
+        commonmilkweedButton.setPosition(305,10);
+        canvas1.add(commonmilkweedButton);
+        
+        Image commonmilkweed = new Image(310, 40, "commonmilkweed_stage1.png");
+        canvas1.add(commonmilkweed);
+
+        //-------PLANT 4------//
+        Button easternbottlebrushgrassButton = new Button("Bottle Brush");
+        easternbottlebrushgrassButton.setPosition(455,10);
+        canvas1.add(easternbottlebrushgrassButton);
+        
+        Image easternbottlebrushgrass = new Image(460, 40, "easternbottlebrushgrass_stage1.png");
+        canvas1.add(easternbottlebrushgrass);
+
+
+        //-------PLANT 5------//
+        Button goldenrodButton = new Button("Golden Rod");
+        goldenrodButton.setPosition(605,10);
+        canvas1.add(goldenrodButton);
+        
+        Image goldenrod = new Image(610, 40, "goldenrod_stage1.png");
+        canvas1.add(goldenrod);
+
+        //-------PLANT 6------//
+        Button leadplantButton = new Button("Lead Plant");
+        leadplantButton.setPosition(5,200);
+        canvas1.add(leadplantButton);
+        
+        Image leadplant = new Image(10, 230, "leadplant_stage1.png");
+        canvas1.add(leadplant);
+
+        //-------PLANT 7------//
+        Button shagbarkhickoryButton = new Button("Shagbarkhickory");
+        shagbarkhickoryButton.setPosition(155,200);
+        canvas1.add(shagbarkhickoryButton);
+        
+        Image shagbarkhickory = new Image(160, 230, "shagbarkhickory_stage1.png");
+        canvas1.add(shagbarkhickory);
+
+        //-------PLANT 8------//
+        Button stjohnswortButton = new Button("St Johnswort");
+        stjohnswortButton.setPosition(305,200);
+        canvas1.add(stjohnswortButton);
+        
+        Image stjohnswort = new Image(310, 230, "stjohnswort_stage1.png");
+        canvas1.add(stjohnswort);
+
+        //-------PLANT 9------//
+        Button sumacButton = new Button("Sumac");
+        sumacButton.setPosition(455,200);
+        canvas1.add(sumacButton);
+        
+        Image sumac = new Image(460, 230, "sumac_stage1.png");
+        canvas1.add(sumac);
+
+        //-------PLANT 10------//
+        Button tallmeadowrueButton = new Button("tallmeadowrue");
+        tallmeadowrueButton.setPosition(605,200);
+        canvas1.add(tallmeadowrueButton);
+        
+        Image tallmeadowrue = new Image(610,230, "tallmeadowrue_stage1.png");
+        canvas1.add(tallmeadowrue);
     
 
 
-    Runnable drawPlant = new Runnable() {
+
+        Runnable drawAmericanPlum = new Runnable() {
             @Override
             public void run() {
                 loadCritterClasses();
-        critters = new ArrayList<>();
-        // for (int n = 0; n < 4; n++)
-        addNewCritter();
-
+                critters = new ArrayList<>();
+                addNewCritter(0); // 0 
+            }
+        };
+        
+        Runnable drawBluestem = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(1); // 1 
+            }
+        };
+        
+        Runnable drawCommonMilkWeed = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(2); // 2 
+            }
+        };
+        
+        Runnable drawEasternBottleBrushGrass = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(3); // 3
             }
         };
 
-        americanplumButton.onClick(drawPlant);
+        Runnable drawGoldenRod = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(4); // 4
+            }
+        };
+
+        Runnable drawLeadplant = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(5); // 5
+            }
+        };
+
+        Runnable drawShagBarkHickory = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(6); // 6
+            }
+        };
+
+        Runnable drawStJohnSwort = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(7); // 7
+            }
+        };
+
+        Runnable drawSumac = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(8); // 8
+            }
+        };
+
+        Runnable drawTallmeadowrue = new Runnable() {
+            @Override
+            public void run() {
+                loadCritterClasses();
+                critters = new ArrayList<>();
+                addNewCritter(9); // 9
+            }
+        };
+
+
+        
+    
+        americanplumButton.onClick(drawAmericanPlum);
+        bluestemButton.onClick(drawBluestem);
+        commonmilkweedButton.onClick(drawCommonMilkWeed);
+        easternbottlebrushgrassButton.onClick(drawEasternBottleBrushGrass);
+        goldenrodButton.onClick(drawGoldenRod);
+        leadplantButton.onClick(drawLeadplant);
+        shagbarkhickoryButton.onClick(drawShagBarkHickory);
+        stjohnswortButton.onClick(drawStJohnSwort);
+        sumacButton.onClick(drawSumac);
+        tallmeadowrueButton.onClick(drawTallmeadowrue);
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     //--------------PLANT OPTIONS---------------------//
 
+     
 
 
+    public static void main(String[] args) {
+        new YouPlant();
+    }
+
+    // private void nextDayButton() {
+    //     Button nextDayButton = new Button("Next day");
+    //     nextDayButton.setPosition(100, 10);
+    //     canvas.add(nextDayButton);
+    
+    //     // Add an onClick event handler for the "Next day" button
+    //     nextDayButton.onClick(() -> nextDay());
+    // }
+
+        // private void nextDay() {
+        //     for (Critter critter : critters) {
+        //         if (critter instanceof AmericanPlum) {
+        //             ((AmericanPlum) critter).nextDay();
+        //         }
+        //     }
+        // }
+   
+}
 
 
      //----------------------Go to the next day button---------------------//
@@ -267,18 +457,6 @@ private void plantOptions(){
     //             // if all Environmental Conditions (except pH)
     //         }
     //     }}
-
-     
-
-
-    public static void main(String[] args) {
-        new YouPlant();
-    }
-
- 
-   
-}
-
 
 
 
