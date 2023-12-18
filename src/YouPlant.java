@@ -176,7 +176,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas = new CanvasWindow("You Plant", 800, 500);
         canvas.setBackground(new Color(54, 209, 255));
       
-        Ellipse sun = new Ellipse(700, 20, 60, 60);
+        Ellipse sun = new Ellipse(370, 20, 60, 60);
         sun.setFillColor(new Color(255, 224, 63));
         canvas.add(sun);
 

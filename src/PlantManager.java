@@ -37,7 +37,7 @@ public class PlantManager {
         americanPlumFactors.add(60.0); // ideal Potassium in ppm
         americanPlumFactors.add(485.0); // ideal Calcium in ppm
         americanPlumFactors.add(50.0); // ideal Magnesium in ppm
-        americanPlumFactors.add(15.0); // ideal Sulpur in ppm
+        americanPlumFactors.add(15.0); // ideal Sulphur in ppm
         americanPlumFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         americanPlumFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         americanPlumFactors.add(90.0); // number of days to grow under ideal conditions)
@@ -51,13 +51,13 @@ public class PlantManager {
         blueStemFactors.add(60.0); // ideal Potassium in ppm
         blueStemFactors.add(485.0); // ideal Calcium in ppm
         blueStemFactors.add(50.0); // ideal Magnesium in ppm
-        blueStemFactors.add(15.0); // ideal Sulpur in ppm
+        blueStemFactors.add(15.0); // ideal Sulphur in ppm
         blueStemFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         blueStemFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         blueStemFactors.add(20.0); // number of days to grow under ideal conditions)
         plantFactors.add(blueStemFactors);
 
-        commonMilkWeedFactors = new ArrayList<Double>(); // fixes nitrogen
+        commonMilkWeedFactors = new ArrayList<Double>(); 
         commonMilkWeedFactors.add(30.0); // ideal water in mm
         commonMilkWeedFactors.add(7.0); // ideal sun in hours
         commonMilkWeedFactors.add(50.0); // ideal Nitrogen in ppm
@@ -65,7 +65,7 @@ public class PlantManager {
         commonMilkWeedFactors.add(60.0); // ideal Potassium in ppm
         commonMilkWeedFactors.add(485.0); // ideal Calcium in ppm
         commonMilkWeedFactors.add(50.0); // ideal Magnesium in ppm
-        commonMilkWeedFactors.add(15.0); // ideal Sulpur in ppm
+        commonMilkWeedFactors.add(15.0); // ideal Sulphur in ppm
         commonMilkWeedFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         commonMilkWeedFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         commonMilkWeedFactors.add(30.0); // number of days to grow under ideal conditions)
@@ -79,13 +79,13 @@ public class PlantManager {
         easternBottleBrushGrassFactors.add(60.0); // ideal Potassium in ppm
         easternBottleBrushGrassFactors.add(480.0); // ideal Calcium in ppm
         easternBottleBrushGrassFactors.add(50.0); // ideal Magnesium in ppm
-        easternBottleBrushGrassFactors.add(15.0); // ideal Sulpur in ppm
+        easternBottleBrushGrassFactors.add(15.0); // ideal Sulphur in ppm
         easternBottleBrushGrassFactors.add(2.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         easternBottleBrushGrassFactors.add(0.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         easternBottleBrushGrassFactors.add(20.0); // number of days to grow under ideal conditions)
         plantFactors.add(easternBottleBrushGrassFactors);
 
-        goldenRodFactors = new ArrayList<Double>(); // fixes nitrogen
+        goldenRodFactors = new ArrayList<Double>(); 
         goldenRodFactors.add(28.0); // ideal water in mm
         goldenRodFactors.add(6.0); // ideal sun in hours
         goldenRodFactors.add(55.0); // ideal Nitrogen in ppm
@@ -93,13 +93,13 @@ public class PlantManager {
         goldenRodFactors.add(55.0); // ideal Potassium in ppm
         goldenRodFactors.add(480.0); // ideal Calcium in ppm
         goldenRodFactors.add(50.0); // ideal Magnesium in ppm
-        goldenRodFactors.add(15.0); // ideal Sulpur in ppm
+        goldenRodFactors.add(15.0); // ideal Sulphur in ppm
         goldenRodFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         goldenRodFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         goldenRodFactors.add(40.0); // number of days to grow under ideal conditions)
         plantFactors.add(goldenRodFactors);
        
-        leadPlantFactors = new ArrayList<Double>(); // fixes nitrogen
+        leadPlantFactors = new ArrayList<Double>();
         leadPlantFactors.add(20.0); // ideal water in mm
         leadPlantFactors.add(6.0); // ideal sun in hours
         leadPlantFactors.add(60.0); // ideal Nitrogen in ppm
@@ -107,7 +107,7 @@ public class PlantManager {
         leadPlantFactors.add(60.0); // ideal Potassium in ppm
         leadPlantFactors.add(485.0); // ideal Calcium in ppm
         leadPlantFactors.add(50.0); // ideal Magnesium in ppm
-        leadPlantFactors.add(13.0); // ideal Sulpur in ppm
+        leadPlantFactors.add(13.0); // ideal Sulphur in ppm
         leadPlantFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         leadPlantFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         leadPlantFactors.add(50.0); // number of days to grow under ideal conditions)
@@ -121,7 +121,7 @@ public class PlantManager {
         shagBarkHickoryFactors.add(45.0); // ideal Potassium in ppm
         shagBarkHickoryFactors.add(480.0); // ideal Calcium in ppm
         shagBarkHickoryFactors.add(50.0); // ideal Magnesium in ppm
-        shagBarkHickoryFactors.add(15.0); // ideal Sulpur in ppm
+        shagBarkHickoryFactors.add(15.0); // ideal Sulphur in ppm
         shagBarkHickoryFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         shagBarkHickoryFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         shagBarkHickoryFactors.add(90.0); // number of days to grow under ideal conditions)
@@ -132,10 +132,10 @@ public class PlantManager {
         stJohnWortFactors.add(6.0); // ideal sun in hours
         stJohnWortFactors.add(60.0); // ideal Nitrogen in ppm
         stJohnWortFactors.add(35.0);  // ideal Phosphorous in ppm
-        stJohnWortFactors.add(30.0); // ideal Potassium in ppm
+        stJohnWortFactors.add(35.0); // ideal Potassium in ppm
         stJohnWortFactors.add(485.0); // ideal Calcium in ppm
         stJohnWortFactors.add(50.0); // ideal Magnesium in ppm
-        stJohnWortFactors.add(15.0); // ideal Sulpur in ppm
+        stJohnWortFactors.add(15.0); // ideal Sulphur in ppm
         stJohnWortFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         stJohnWortFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         stJohnWortFactors.add(30.0); // number of days to grow under ideal conditions)
@@ -149,7 +149,7 @@ public class PlantManager {
         sumacFactors.add(40.0); // ideal Potassium in ppm
         sumacFactors.add(480.0); // ideal Calcium in ppm
         sumacFactors.add(50.0); // ideal Magnesium in ppm
-        sumacFactors.add(15.0); // ideal Sulpur in ppm
+        sumacFactors.add(15.0); // ideal Sulphur in ppm
         sumacFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         sumacFactors.add(0.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         sumacFactors.add(90.0); // number of days to grow under ideal conditions)
@@ -163,16 +163,58 @@ public class PlantManager {
         tallMeadowRueFactors.add(50.0); // ideal Potassium in ppm
         tallMeadowRueFactors.add(485.0); // ideal Calcium in ppm
         tallMeadowRueFactors.add(50.0); // ideal Magnesium in ppm
-        tallMeadowRueFactors.add(15.0); // ideal Sulpur in ppm
+        tallMeadowRueFactors.add(15.0); // ideal Sulphur in ppm
         tallMeadowRueFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         tallMeadowRueFactors.add(3.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
         tallMeadowRueFactors.add(40.0); // number of days to grow under ideal conditions)
         plantFactors.add(tallMeadowRueFactors);
     }
 
-    private void plantGrowProgress(ArrayList<Double> plant) {
-        x = 0;
+    public void getWaterPref(ArrayList<Double> plant) {
+        plant.get(0);
     }
+
+    public void getSunPref(ArrayList<Double> plant) {
+        plant.get(0);
+    } 
+
+    public void getNitrogenPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getPhosphorousPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getPotassiumPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getCalciumPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getMagnesiumPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getSulphurPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getPHPref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getSoilTypePref(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    public void getGrowDaysNeed(ArrayList<Double> plant) {
+        plant.get(0);
+    }
+
+    
 
     
 }
