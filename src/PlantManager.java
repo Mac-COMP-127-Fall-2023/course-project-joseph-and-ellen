@@ -3,16 +3,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlantManager {
-    private final double idealWater; // in mm
-    private final double idealSun; // in hours
-    private final double idealNitrogen; // in ppm
-    private final double idealPhosphorous; // in ppm
-    private final double idealPotassium; // in ppm
-    private final double idealCalcium; // in ppm
-    private final double idealMagnesium; // in ppm
-    private final double idealSulphur; // in ppm
-    private final double idealPH; // 0 = acidic, 1= neutral, 2= basic
-    private final double idealSoilType; // 0 is sand, 1 is loam, 2 is silt, 3 is clay
     private static ArrayList<ArrayList<Double>> plantFactors;
     private static ArrayList<Double> americanPlumFactors;
     private static ArrayList<Double> blueStemFactors;
@@ -146,17 +136,17 @@ public class PlantManager {
         plantFactors.add(sumacFactors);
 
         tallMeadowRueFactors = new ArrayList<Double>();
-        sumacFactors.add(33.0); // ideal water in mm
-        sumacFactors.add(6.0); // ideal sun in hours
-        sumacFactors.add(50.0); // ideal Nitrogen in ppm
-        sumacFactors.add(50.0);  // ideal Phosphorous in ppm
-        sumacFactors.add(50.0); // ideal Potassium in ppm
-        sumacFactors.add(485.0); // ideal Calcium in ppm
-        sumacFactors.add(50.0); // ideal Magnesium in ppm
-        sumacFactors.add(15.0); // ideal Sulpur in ppm
-        sumacFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
-        sumacFactors.add(3.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
-        plantFactors.add(sumacFactors);
+        tallMeadowRueFactors.add(33.0); // ideal water in mm
+        tallMeadowRueFactors.add(6.0); // ideal sun in hours
+        tallMeadowRueFactors.add(50.0); // ideal Nitrogen in ppm
+        tallMeadowRueFactors.add(50.0);  // ideal Phosphorous in ppm
+        tallMeadowRueFactors.add(50.0); // ideal Potassium in ppm
+        tallMeadowRueFactors.add(485.0); // ideal Calcium in ppm
+        tallMeadowRueFactors.add(50.0); // ideal Magnesium in ppm
+        tallMeadowRueFactors.add(15.0); // ideal Sulpur in ppm
+        tallMeadowRueFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
+        tallMeadowRueFactors.add(3.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        plantFactors.add(tallMeadowRueFactors);
     }
 }
 
