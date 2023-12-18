@@ -14,6 +14,17 @@ public class PlantManager {
     private static ArrayList<Double> stJohnWortFactors;
     private static ArrayList<Double> sumacFactors;
     private static ArrayList<Double> tallMeadowRueFactors;
+    private int numAmericanPlum;
+    private int numBlueStem;
+    private int numMilkWeed;
+    private int numBottleBrush;
+    private int numBlueStem2;
+    private int numGoldenRod;
+    private int numLeadplant;
+    private int numShagBarkHickory;
+    private int numStJohnsWort;
+    private int numSumac;
+    private int numTallMeadowRue;
 
     public PlantManager() {
         plantFactors = new ArrayList<ArrayList<Double>>();
@@ -29,6 +40,7 @@ public class PlantManager {
         americanPlumFactors.add(15.0); // ideal Sulpur in ppm
         americanPlumFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         americanPlumFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        americanPlumFactors.add(90.0); // number of days to grow under ideal conditions)
         plantFactors.add(americanPlumFactors);
 
         blueStemFactors = new ArrayList<Double>();
@@ -42,6 +54,7 @@ public class PlantManager {
         blueStemFactors.add(15.0); // ideal Sulpur in ppm
         blueStemFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         blueStemFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        blueStemFactors.add(20.0); // number of days to grow under ideal conditions)
         plantFactors.add(blueStemFactors);
 
         commonMilkWeedFactors = new ArrayList<Double>(); // fixes nitrogen
@@ -55,6 +68,7 @@ public class PlantManager {
         commonMilkWeedFactors.add(15.0); // ideal Sulpur in ppm
         commonMilkWeedFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         commonMilkWeedFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        commonMilkWeedFactors.add(30.0); // number of days to grow under ideal conditions)
         plantFactors.add(commonMilkWeedFactors);
 
         easternBottleBrushGrassFactors = new ArrayList<Double>();
@@ -68,6 +82,7 @@ public class PlantManager {
         easternBottleBrushGrassFactors.add(15.0); // ideal Sulpur in ppm
         easternBottleBrushGrassFactors.add(2.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         easternBottleBrushGrassFactors.add(0.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        easternBottleBrushGrassFactors.add(20.0); // number of days to grow under ideal conditions)
         plantFactors.add(easternBottleBrushGrassFactors);
 
         goldenRodFactors = new ArrayList<Double>(); // fixes nitrogen
@@ -81,6 +96,7 @@ public class PlantManager {
         goldenRodFactors.add(15.0); // ideal Sulpur in ppm
         goldenRodFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         goldenRodFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        goldenRodFactors.add(40.0); // number of days to grow under ideal conditions)
         plantFactors.add(goldenRodFactors);
        
         leadPlantFactors = new ArrayList<Double>(); // fixes nitrogen
@@ -94,6 +110,7 @@ public class PlantManager {
         leadPlantFactors.add(13.0); // ideal Sulpur in ppm
         leadPlantFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         leadPlantFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        leadPlantFactors.add(50.0); // number of days to grow under ideal conditions)
         plantFactors.add(leadPlantFactors);
 
         shagBarkHickoryFactors = new ArrayList<Double>();
@@ -107,6 +124,7 @@ public class PlantManager {
         shagBarkHickoryFactors.add(15.0); // ideal Sulpur in ppm
         shagBarkHickoryFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         shagBarkHickoryFactors.add(2.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        shagBarkHickoryFactors.add(90.0); // number of days to grow under ideal conditions)
         plantFactors.add(shagBarkHickoryFactors);
 
         stJohnWortFactors = new ArrayList<Double>();
@@ -120,6 +138,7 @@ public class PlantManager {
         stJohnWortFactors.add(15.0); // ideal Sulpur in ppm
         stJohnWortFactors.add(1.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         stJohnWortFactors.add(1.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        stJohnWortFactors.add(30.0); // number of days to grow under ideal conditions)
         plantFactors.add(stJohnWortFactors);
 
         sumacFactors = new ArrayList<Double>();
@@ -133,6 +152,7 @@ public class PlantManager {
         sumacFactors.add(15.0); // ideal Sulpur in ppm
         sumacFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         sumacFactors.add(0.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        sumacFactors.add(90.0); // number of days to grow under ideal conditions)
         plantFactors.add(sumacFactors);
 
         tallMeadowRueFactors = new ArrayList<Double>();
@@ -146,8 +166,15 @@ public class PlantManager {
         tallMeadowRueFactors.add(15.0); // ideal Sulpur in ppm
         tallMeadowRueFactors.add(0.0); // ideal pH (0 = acidic, 1= neutral, 2= basic)
         tallMeadowRueFactors.add(3.0); // ideal soil type (0 is sand, 1 is loam, 2 is silt, 3 is clay)
+        tallMeadowRueFactors.add(40.0); // number of days to grow under ideal conditions)
         plantFactors.add(tallMeadowRueFactors);
     }
+
+    private void plantGrowProgress(ArrayList<Double> plant) {
+        x = 0;
+    }
+
+    
 }
 
     
