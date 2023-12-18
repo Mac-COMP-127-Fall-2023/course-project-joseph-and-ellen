@@ -28,7 +28,8 @@ public class YouPlant {
     private double SOIL_WIDTH = 800; 
     private double SOIL_HEIGHT = 500;
     private int MAX_DAYS = 100;
-    private int numDays;
+    private int numDays = 1;
+
     private List<Critter> critters;
     private final Random rand = new Random();
     private List<Class<? extends Critter>> critterClasses;
@@ -84,34 +85,34 @@ private Critter createChoosenCritter(int buttonIndex) {
 
     switch (buttonIndex) {
         case 0:
-            critterClass = critterClasses.get(2); // plant 0
+            critterClass = critterClasses.get(3); // plant 0
             break;
         case 1:
-            critterClass = critterClasses.get(8); // plant 1    
+            critterClass = critterClasses.get(9); // plant 1    
             break;
         case 2:
-            critterClass = critterClasses.get(6); // plant 2     
+            critterClass = critterClasses.get(7); // plant 2     
             break;
         case 3:
-            critterClass = critterClasses.get(3); // plant 3   
+            critterClass = critterClasses.get(4); // plant 3   
             break;
         case 4:
-            critterClass = critterClasses.get(5); // plant 4      
+            critterClass = critterClasses.get(6); // plant 4      
             break;
         case 5:
-            critterClass = critterClasses.get(7); // plant 5   
+            critterClass = critterClasses.get(8); // plant 5   
             break;
         case 6:
-            critterClass = critterClasses.get(4); // plant 6
+            critterClass = critterClasses.get(5); // plant 6
             break;
         case 7:
-            critterClass = critterClasses.get(9); // plant 7    
+            critterClass = critterClasses.get(0); // plant 7    
             break;
         case 8:
-            critterClass = critterClasses.get(0); // plant 8
+            critterClass = critterClasses.get(1); // plant 8
             break;
         case 9:
-            critterClass = critterClasses.get(1); // plant 9
+            critterClass = critterClasses.get(2); // plant 9
             break;
         default:
             throw new IllegalArgumentException("Invalid button index");
@@ -175,10 +176,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas = new CanvasWindow("You Plant", 800, 500);
         canvas.setBackground(new Color(54, 209, 255));
       
-
-        
-
-        Ellipse sun = new Ellipse(700, 20, 60, 60);
+        Ellipse sun = new Ellipse(370, 20, 60, 60);
         sun.setFillColor(new Color(255, 224, 63));
         canvas.add(sun);
 
@@ -190,9 +188,10 @@ private Critter createChoosenCritter(int buttonIndex) {
        
 
        
-
-
+        
         addchooseYourPlantButton();
+        addNextDayButton();
+        
 
         // nextDayButton();
  
@@ -218,7 +217,7 @@ private Critter createChoosenCritter(int buttonIndex) {
 
 
     private void plantOptions() {
-        canvas1 = new CanvasWindow("Plants", 250, 250);
+        canvas1 = new CanvasWindow("Plants", 750, 350);
         //-------PLANT 1------//
         Button americanplumButton = new Button("American Plum");
         americanplumButton.setPosition(5,10);
@@ -238,7 +237,7 @@ private Critter createChoosenCritter(int buttonIndex) {
 
 
         //-------PLANT 3------//
-        Button commonmilkweedButton = new Button("Milk weed");
+        Button commonmilkweedButton = new Button("Milkweed");
         commonmilkweedButton.setPosition(305,10);
         canvas1.add(commonmilkweedButton);
         
@@ -246,7 +245,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas1.add(commonmilkweed);
 
         //-------PLANT 4------//
-        Button easternbottlebrushgrassButton = new Button("Bottle Brush");
+        Button easternbottlebrushgrassButton = new Button("Bottlebrush Grass");
         easternbottlebrushgrassButton.setPosition(455,10);
         canvas1.add(easternbottlebrushgrassButton);
         
@@ -255,7 +254,7 @@ private Critter createChoosenCritter(int buttonIndex) {
 
 
         //-------PLANT 5------//
-        Button goldenrodButton = new Button("Golden Rod");
+        Button goldenrodButton = new Button("Goldenrod");
         goldenrodButton.setPosition(605,10);
         canvas1.add(goldenrodButton);
         
@@ -263,7 +262,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas1.add(goldenrod);
 
         //-------PLANT 6------//
-        Button leadplantButton = new Button("Lead Plant");
+        Button leadplantButton = new Button("Leadplant");
         leadplantButton.setPosition(5,200);
         canvas1.add(leadplantButton);
         
@@ -271,7 +270,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas1.add(leadplant);
 
         //-------PLANT 7------//
-        Button shagbarkhickoryButton = new Button("Shagbarkhickory");
+        Button shagbarkhickoryButton = new Button("Shagbark Hickory");
         shagbarkhickoryButton.setPosition(155,200);
         canvas1.add(shagbarkhickoryButton);
         
@@ -295,7 +294,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         canvas1.add(sumac);
 
         //-------PLANT 10------//
-        Button tallmeadowrueButton = new Button("tallmeadowrue");
+        Button tallmeadowrueButton = new Button("Tall meadow rue");
         tallmeadowrueButton.setPosition(605,200);
         canvas1.add(tallmeadowrueButton);
         
@@ -368,7 +367,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             }
         };
 
-        Runnable drawStJohnSwort = new Runnable() {
+        Runnable drawStJohnsWort = new Runnable() {
             @Override
             public void run() {
                 loadCritterClasses();
@@ -405,7 +404,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         goldenrodButton.onClick(drawGoldenRod);
         leadplantButton.onClick(drawLeadplant);
         shagbarkhickoryButton.onClick(drawShagBarkHickory);
-        stjohnswortButton.onClick(drawStJohnSwort);
+        stjohnswortButton.onClick(drawStJohnsWort);
         sumacButton.onClick(drawSumac);
         tallmeadowrueButton.onClick(drawTallmeadowrue);
 
@@ -414,8 +413,27 @@ private Critter createChoosenCritter(int buttonIndex) {
     
 
 
-    //--------------PLANT OPTIONS---------------------//
+    //--------------NEXT DAY BUTTON---------------------//
+       private void addNextDayButton() {
+        Button nextDayButton = new Button("Go to the Next Day");
+        nextDayButton.setPosition(120, 10);
+        canvas.add(nextDayButton);
+        Runnable drawingKitRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (numDays <= MAX_DAYS) {
+                numDays += 1;
+                System.out.println("Day" + numDays + ":");
+                for (Critter plant : critters) {
+                
 
+                }
+                }
+
+            }
+        };
+        nextDayButton.onClick(drawingKitRunnable);
+    }
      
 
 
@@ -423,15 +441,7 @@ private Critter createChoosenCritter(int buttonIndex) {
         new YouPlant();
     }
 
-    // private void nextDayButton() {
-    //     Button nextDayButton = new Button("Next day");
-    //     nextDayButton.setPosition(100, 10);
-    //     canvas.add(nextDayButton);
     
-    //     // Add an onClick event handler for the "Next day" button
-    //     nextDayButton.onClick(() -> nextDay());
-    // }
-
         // private void nextDay() {
         //     for (Critter critter : critters) {
         //         if (critter instanceof AmericanPlum) {
