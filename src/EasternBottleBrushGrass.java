@@ -15,7 +15,7 @@ public class EasternBottleBrushGrass extends Critter {
        
     }
     void stage2() {
-        Image easternBottlebrushGrass = new Image(0,0,"easternbottlebrushgrass_stage2.png");
+        Image easternBottlebrushGrass_stage2 = new Image(0,0,"easternbottlebrushgrass_stage2.png");
         getGraphics().remove(easternBottlebrushGrass_stage1);
         getGraphics().add(easternBottlebrushGrass_stage2);
     }
