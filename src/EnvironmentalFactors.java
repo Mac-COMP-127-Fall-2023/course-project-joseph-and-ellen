@@ -10,7 +10,7 @@
 // import edu.macalester.graphics.GraphicsGroup;
 
 // public class EnvironmentalFactors extends ArrayList<Double> {
-//     private double rainInCycle; // in mm
+//     private double waterInCycle; // in mm
 //     private double waterTotal;// in mm
 //     private double sunInCycle; // in hours
 //     private double sunTotal; // in hours
@@ -24,11 +24,11 @@
 //     private double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
 //     private ArrayList<Double> eF;
 
-//     EnvironmentalFactors(soilPH, rainInCycle, sunInCycle, waterTotal, sunTotal, soilNitrogen, soilPhosphorous, soilPotassium, soilCalcium, soilMagnesium, soilSulphur, soilType) {
+//     EnvironmentalFactors(soilPH, waterInCycle, sunInCycle, waterTotal, sunTotal, soilNitrogen, soilPhosphorous, soilPotassium, soilCalcium, soilMagnesium, soilSulphur, soilType) {
 //         eF = new EnvironmentalFactors();
 //         eF.add(soilPH);
 //         eF.add(soilPH);
-//         eF.add(raininCycle);
+//         eF.add(waterInCycle);
 //         eF.add(sunInCycle);
 //         eF.add(waterTotal);
 //         eF.add(sunTotal);

@@ -25,7 +25,7 @@ public class YouPlant {
     
     private double xpos = 0;
     private double ypos = 150;
-    private double SOIL_WIDTH = 800;
+    private double SOIL_WIDTH = 800; 
     private double SOIL_HEIGHT = 500;
     private int MAX_DAYS = 100;
     private int numDays;
@@ -108,10 +108,10 @@ private Critter createChoosenCritter(int buttonIndex) {
             critterClass = critterClasses.get(9); // plant 7    
             break;
         case 8:
-            critterClass = critterClasses.get(1); // plant 8
+            critterClass = critterClasses.get(0); // plant 8
             break;
         case 9:
-            critterClass = critterClasses.get(0); // plant 9
+            critterClass = critterClasses.get(1); // plant 9
             break;
         default:
             throw new IllegalArgumentException("Invalid button index");
