@@ -73,4 +73,8 @@ public class EnvironmentalFactors extends ArrayList<Double> {
         waterTotal = waterTotal - 1;
     }
 
+    public void addWater() {
+        waterTotal = waterTotal + 1;
+    }
+
 }

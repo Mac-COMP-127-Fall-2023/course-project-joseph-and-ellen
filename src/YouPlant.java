@@ -441,8 +441,8 @@ private Critter createChoosenCritter(int buttonIndex) {
                             environmentalFactors.loseWater();
                         }
                         else {
-                            critters.remove(plant);
-                            canvas.remove(plant);
+                            canvas.remove(plant.getGraphics());
+                            environmentalFactors.addWater();
                         }
 
 
