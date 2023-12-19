@@ -16,11 +16,16 @@ public class TallMeadowRue extends Critter {
     }
     protected void stage2() {
         Image tallMeadowRue_stage2 = new Image(0,0,"tallmeadowrue_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(tallMeadowRue_stage2);
     }
     protected void stage3() {
         Image tallMeadowRue_stage3 = new Image(0,0,"tallmeadowrue_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(tallMeadowRue_stage3);
+    }
+    protected void remove() {
+        getGraphics().removeAll();
     }
   
 }

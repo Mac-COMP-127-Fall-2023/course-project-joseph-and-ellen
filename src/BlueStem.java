@@ -16,11 +16,16 @@ public class BlueStem extends Critter {
     }
     protected void stage2() {
         Image bluestem_stage2 = new Image(0,0,"bluestem_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(bluestem_stage2);
     }
     protected void stage3() {
         Image bluestem_stage3 = new Image(0,0,"bluestem_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(bluestem_stage3);
+    }
+    protected void remove() {
+        getGraphics().removeAll();
     }
 }
 

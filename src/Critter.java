@@ -67,6 +67,8 @@ public abstract class Critter {
 
     protected abstract void stage3();
 
+    protected abstract void remove();
+
     public double getSize() {
         return Math.hypot(getGraphics().getWidth(), getGraphics().getHeight());
     }

@@ -419,23 +419,27 @@ private Critter createChoosenCritter(int buttonIndex) {
         Runnable drawingKitRunnable = new Runnable() {
             @Override
             public void run() {
-                if (numDays <= MAX_DAYS) {
                 numDays += 1;
                 System.out.println("Day" + numDays + ":");
                 System.out.println(critters.size());
                 System.out.println(critters.get(0).getGraphics().getSize());
-                for(Critter plant: critters) {
-                    if (plant.daysAlive() >= 1 && plant.daysAlive() < 2) {
-                        plant.stage2();
-                    }
-                    if (plant.daysAlive() >= 2) {
-                        plant.stage3();
-                    }
-                    plant.addOneDay();
-
-                }
                 
-                }
+                    for(Critter plant: critters) {
+                        System.out.println(plant.getClass().getName());
+                        if (isAlive(plant)) {
+                            if (plant.daysAlive() >= 1 && plant.daysAlive() < 2) {
+                            plant.stage2();
+                            }
+                            if (plant.daysAlive() >= 2) {
+                            plant.stage3();
+                            }
+                            plant.addOneDay();
+                        }
+                        else {
+                            plant.remove();
+                        }
+
+                    }
 
             }
         };
@@ -444,5 +448,14 @@ private Critter createChoosenCritter(int buttonIndex) {
     public static double getNumDays() {
         return numDays;
     }
+
+    public boolean isAlive(Critter plant) {
+        return true;
+        if (plant. = "AmericanPlum") {
+            int x = 0;
+        }
+    }
+
+
 
 }

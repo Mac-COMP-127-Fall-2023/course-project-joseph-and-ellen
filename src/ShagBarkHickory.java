@@ -17,11 +17,16 @@ public class ShagBarkHickory extends Critter {
     }
     protected void stage2() {
         Image shagbarkHickory_stage2 = new Image(0,0,"shagbarkHickory_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(shagbarkHickory_stage2);
     }
     protected void stage3() {
         Image shagbarkHickory_stage3 = new Image(0,0,"shagbarkHickory_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(shagbarkHickory_stage3);
+    }
+    protected void remove() {
+        getGraphics().removeAll();
     }
 }
 

@@ -20,10 +20,15 @@ public class LeadPlant extends Critter {
     }
     protected void stage2() {
         Image leadplant_stage2 = new Image(0,0,"leadplant_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(leadplant_stage2);
     }
     protected void stage3() {
         Image leadplant_stage3 = new Image(0,0,"leadplant_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(leadplant_stage3);
+    }
+    protected void remove() {
+        getGraphics().removeAll();
     }
 }

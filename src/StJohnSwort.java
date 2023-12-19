@@ -18,11 +18,16 @@ public class StJohnsWort extends Critter {
     }
     protected void stage2() {
         Image stJohnsWort_stage2 = new Image(0,0,"stjohnswort_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(stJohnsWort_stage2);
     }
     protected void stage3() {
         Image stJohnsWort_stage3 = new Image(0,0,"stjohnswort_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(stJohnsWort_stage3);
+    }
+    protected void remove() {
+        getGraphics().removeAll();
     }
 }
 

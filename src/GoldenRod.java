@@ -18,10 +18,15 @@ public class GoldenRod extends Critter {
     }
     protected void stage2() {
         Image goldenrod_stage2 = new Image(0,0,"goldenrod_stage2.png");
+        getGraphics().removeAll();
         getGraphics().add(goldenrod_stage2);
     }
     protected void stage3() {
         Image goldenrod_stage3 = new Image(0,0,"goldenrod_stage3.png");
+        getGraphics().removeAll();
         getGraphics().add(goldenrod_stage3);
     } 
+    protected void remove() {
+        getGraphics().removeAll();
+    }
 }
