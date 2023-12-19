@@ -11,47 +11,43 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class EnvironmentalFactors extends ArrayList<Double> {
-    private double rainInCycle; // in mm
-    private double waterTotal;// in mm
-    private double sunInCycle; // in hours
-    private double sunTotal; // in hours
-    private double soilPH; // 0 = acidic, 1= neutral, 2= basic
-    private double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
-    private ArrayList<Double> eF;
+    public double rainInCycle; // in mm
+    public double waterTotal;// in mm
+    public double sunInCycle; // in hours
+    public double soilPH; // 0 = acidic, 1= neutral, 2= basic
+    public double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
+    public ArrayList<Double> environmentalFactors;
 
     public EnvironmentalFactors() {
-        eF = new EnvironmentalFactors();
-        eF.add(rainInCycle);
-        eF.add(waterTotal);
-        eF.add(sunInCycle);
-        eF.add(sunTotal);
-        eF.add(soilPH);
-        eF.add(soilType);
+        environmentalFactors = new EnvironmentalFactors();
+        environmentalFactors.add(rainInCycle);
+        environmentalFactors.add(waterTotal);
+        environmentalFactors.add(sunInCycle);
+        environmentalFactors.add(soilPH);
+        environmentalFactors.add(soilType);
     }
 
     public void newRandomEnvFactors() {
         waterTotal = (Math.random() * (58 - 18)) + 18; // ranges from 58 to 18
-        soilPH = (Math.random() * (2)); // range from 8 to 1
-        soilType = (Math.random() * (3)); // range from 8 to 1
+        soilPH = (Math.random() * (2)); // range from 2 to 1
+        soilType = (Math.random() * (3)); // range from 3 to 1
         
 
         }
-    public boolean Rain() {
+    public void rain() {
         if (Math.random() <= 0.1) {
             rainInCycle = (Math.random() * (8 - 1)) + 1; // range from 8 to 1
-            waterTotal += rainInCycle;
-            return true;
+            waterTotal = waterTotal + rainInCycle;
         }
-        return false;
     }
 
     public void sunInCycleRandom() {
         sunInCycle = (Math.random() * (14.5 - 2.5)) + 2.5; // range from 8 to 1
     }
 
-    public double getRainInCycle() {
-        return rainInCycle;
-    }
+    // public double getRainInCycle() {
+    //     return rainInCycle;
+    // }
 
     public double getWaterTotal() {
         return waterTotal;
@@ -60,9 +56,6 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     public double getSunInCycle() {
         return sunInCycle;
     }
-    public double getSunTotal() {
-        return sunTotal;
-    }
 
     public double getSoilPH() {
         return soilPH;
@@ -70,6 +63,10 @@ public class EnvironmentalFactors extends ArrayList<Double> {
 
     public double getSoilType() {
         return soilType;
+    }
+
+    public double loseWater() {
+        return waterTotal = waterTotal - 0.5;
     }
 
 

@@ -3,17 +3,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlantManager {
-    private static ArrayList<ArrayList<Double>> plantFactors;
-    private static ArrayList<Double> americanPlumFactors;
-    private static ArrayList<Double> blueStemFactors;
-    private static ArrayList<Double> commonMilkWeedFactors;
-    private static ArrayList<Double> easternBottleBrushGrassFactors;
-    private static ArrayList<Double> goldenRodFactors;
-    private static ArrayList<Double> leadPlantFactors;
-    private static ArrayList<Double> shagBarkHickoryFactors;
-    private static ArrayList<Double> stJohnWortFactors;
-    private static ArrayList<Double> sumacFactors;
-    private static ArrayList<Double> tallMeadowRueFactors;
+    public ArrayList<ArrayList<Double>> plantFactors;
+    public ArrayList<Double> americanPlumFactors;
+    public ArrayList<Double> blueStemFactors;
+    public ArrayList<Double> commonMilkWeedFactors;
+    public ArrayList<Double> easternBottleBrushGrassFactors;
+    public ArrayList<Double> goldenRodFactors;
+    public ArrayList<Double> leadPlantFactors;
+    public ArrayList<Double> shagBarkHickoryFactors;
+    public ArrayList<Double> stJohnWortFactors;
+    public ArrayList<Double> sumacFactors;
+    public ArrayList<Double> tallMeadowRueFactors;
 
     public PlantManager() {
         plantFactors = new ArrayList<ArrayList<Double>>();
@@ -89,19 +89,19 @@ public class PlantManager {
     }
     
 
-    public double getIdealWater(ArrayList<Double> plantFactors) {
-        return plantFactors.get(0);
+    public double getIdealWater(ArrayList<Double> typePlantFactors) {
+        return typePlantFactors.get(0);
     }
 
-    public double getIdealSunInCycle(ArrayList<Double> plantFactors) {
-        return plantFactors.get(1);
+    public double getIdealSunInCycle(ArrayList<Double> typePlantFactors) {
+        return typePlantFactors.get(1);
     }
 
-    public double getIdealSoilPH(ArrayList<Double> plantFactors) {
-        return plantFactors.get(2);
+    public double getIdealSoilPH(ArrayList<Double> typePlantFactors) {
+        return typePlantFactors.get(2);
     }
 
-    public double getIdealSoilType(ArrayList<Double> plantFactors) {
-        return plantFactors.get(3);
+    public double getIdealSoilType(ArrayList<Double> typePlantFactors) {
+        return typePlantFactors.get(3);
     }
 }

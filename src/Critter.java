@@ -96,4 +96,13 @@ public abstract class Critter {
     public double addOneDay() {
         return daysAlive = daysAlive + 1;
     }
+    public double addEightDay() {
+        return daysAlive = daysAlive + 0.125;
+    }
+    public double addFourthDay() {
+        return daysAlive = daysAlive + 0.25;
+    }
+    public double addHalfDay() {
+        return daysAlive = daysAlive + 0.25;
+    }
 }
