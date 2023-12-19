@@ -33,6 +33,7 @@ public class YouPlant {
     private final Random rand = new Random();
     private List<Class<? extends Critter>> critterClasses;
     private static final boolean CAPTIONS_ENABLED = false;
+    priva
 
     public YouPlant() {
         critters = new ArrayList<>();
@@ -182,11 +183,6 @@ private Critter createChoosenCritter(int buttonIndex) {
         soil.setFillColor(new Color(46, 125, 40));
         canvas.add(soil);
 
-        
-       
-
-       
-        
         addchooseYourPlantButton();
         addNextDayButton();
         
@@ -412,7 +408,7 @@ private Critter createChoosenCritter(int buttonIndex) {
 
 
     //--------------NEXT DAY BUTTON---------------------//
-       private void addNextDayButton() {
+       public void addNextDayButton() {
         Button nextDayButton = new Button("Go to the Next Day");
         nextDayButton.setPosition(120, 10);
         canvas.add(nextDayButton);
@@ -425,12 +421,11 @@ private Critter createChoosenCritter(int buttonIndex) {
                 System.out.println(critters.get(0).getGraphics().getSize());
                 
                     for(Critter plant: critters) {
-                        System.out.println(plant.getClass().getName());
                         if (isAlive(plant)) {
-                            if (plant.daysAlive() >= 1 && plant.daysAlive() < 2) {
+                            if (plant.daysAlive() >= 20 && plant.daysAlive() < 40) {
                             plant.stage2();
                             }
-                            if (plant.daysAlive() >= 2) {
+                            if (plant.daysAlive() >= 40) {
                             plant.stage3();
                             }
                             plant.addOneDay();
@@ -450,10 +445,37 @@ private Critter createChoosenCritter(int buttonIndex) {
     }
 
     public boolean isAlive(Critter plant) {
-        return true;
-        if (plant. = "AmericanPlum") {
-            int x = 0;
+        String plantName = plant.getClass().getName();
+        if (plantName.equalsIgnoreCase("AmericanPlum")) {
         }
+        if (plantName.equalsIgnoreCase("Bluestem")) {
+            System.out.println("2");
+        }
+        if (plantName.equalsIgnoreCase("CommonMilkWeed")) {
+            System.out.println("3");
+        }
+        if (plantName.equalsIgnoreCase("easternbottlebrushgrass")) {
+            System.out.println("4");
+        }
+        if (plantName.equalsIgnoreCase("goldenrod")) {
+            System.out.println("5");
+        }
+        if (plantName.equalsIgnoreCase("leadplant")) {
+            System.out.println("6");
+        }
+        if (plantName.equalsIgnoreCase("shagbarkhickory")) {
+            System.out.println("7");
+        }
+        if (plantName.equalsIgnoreCase("stjohnswort")) {
+            System.out.println("8");
+        }
+        if (plantName.equalsIgnoreCase("sumac")) {
+            System.out.println("9");
+        }
+        if (plantName.equalsIgnoreCase("tallmeadowrue")) {
+            System.out.println("10");
+        }
+        return true;
     }
 
 
