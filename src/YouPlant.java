@@ -29,19 +29,20 @@ public class YouPlant {
     private double SOIL_HEIGHT = 500;
     private int MAX_DAYS = 100;
     private int numDays = 1;
-
     private List<Critter> critters;
     private final Random rand = new Random();
     private List<Class<? extends Critter>> critterClasses;
     private static final boolean CAPTIONS_ENABLED = false;
 
-    
-
-
-
     public YouPlant() {
+        critters = new ArrayList<>();
         mainScreen();
     }
+    
+    public static void main(String[] args) {
+        new YouPlant();
+    }
+
 
     //---------------CRITTER-----------------------//
     private void loadCritterClasses() {
@@ -86,30 +87,39 @@ private Critter createChoosenCritter(int buttonIndex) {
     switch (buttonIndex) {
         case 0:
             critterClass = critterClasses.get(3); // plant 0
+            
             break;
         case 1:
-            critterClass = critterClasses.get(9); // plant 1    
+            critterClass = critterClasses.get(9); // plant 1  
+            
             break;
         case 2:
             critterClass = critterClasses.get(7); // plant 2     
+            
             break;
         case 3:
             critterClass = critterClasses.get(4); // plant 3   
+            
             break;
         case 4:
-            critterClass = critterClasses.get(6); // plant 4      
+            critterClass = critterClasses.get(6); // plant 4     
+            
             break;
         case 5:
             critterClass = critterClasses.get(8); // plant 5   
+            
             break;
         case 6:
             critterClass = critterClasses.get(5); // plant 6
+            
             break;
         case 7:
-            critterClass = critterClasses.get(0); // plant 7    
+            critterClass = critterClasses.get(0); // plant 7 
+            
             break;
         case 8:
             critterClass = critterClasses.get(1); // plant 8
+            
             break;
         case 9:
             critterClass = critterClasses.get(2); // plant 9
@@ -160,17 +170,6 @@ private Critter createChoosenCritter(int buttonIndex) {
 
 
 //---------------CRITTER-----------------------//
-
-
-
-
-
-
-
-
-
-
-
 
     private void mainScreen() {
         canvas = new CanvasWindow("You Plant", 800, 500);
@@ -308,7 +307,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(0); // 0 
             }
         };
@@ -317,7 +316,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(1); // 1 
             }
         };
@@ -326,7 +325,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(2); // 2 
             }
         };
@@ -335,7 +334,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(3); // 3
             }
         };
@@ -344,7 +343,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(4); // 4
             }
         };
@@ -353,7 +352,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(5); // 5
             }
         };
@@ -362,7 +361,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(6); // 6
             }
         };
@@ -371,7 +370,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(7); // 7
             }
         };
@@ -380,7 +379,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(8); // 8
             }
         };
@@ -389,7 +388,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 loadCritterClasses();
-                critters = new ArrayList<>();
+                // critters = new ArrayList<>();
                 addNewCritter(9); // 9
             }
         };
@@ -424,23 +423,17 @@ private Critter createChoosenCritter(int buttonIndex) {
                 if (numDays <= MAX_DAYS) {
                 numDays += 1;
                 System.out.println("Day" + numDays + ":");
-                for (Critter plant : critters) {
-                
-
+                System.out.println(critters.size());
+                for(Critter plant: critters) {
+                    
                 }
+                
                 }
 
             }
         };
         nextDayButton.onClick(drawingKitRunnable);
     }
-     
-
-
-    public static void main(String[] args) {
-        new YouPlant();
-    }
-
     
         // private void nextDay() {
         //     for (Critter critter : critters) {

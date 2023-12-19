@@ -45,21 +45,20 @@ public class EnvironmentalFactors extends ArrayList<Double> {
 
     public void newRandomEnvFactors() {
         waterTotal = (Math.random() * (58 - 18)) + 18; // ranges from 58 to 18
-        soilNitrogen = (Math.random() * (75 - 35)) + 35;
-        soilPhosphorous = (Math.random() * (58 - 32)) + 32;
-        soilPotassium = (Math.random() * (55 - 35)) + 35;
-        soilCalcium = (Math.random() * (700 - 300)) + 300;
-        soilMagnesium = (Math.random() * (70 - 30)) + 30;
-        soilSulphur = (Math.random() * (20 - 10)) + 10;
-        soilPH = (Math.random() * (2));
-        soilType = (Math.random() * (3));
+        soilNitrogen = (Math.random() * (75 - 35)) + 35; // range from 8 to 1
+        soilPhosphorous = (Math.random() * (58 - 32)) + 32; // range from 8 to 1
+        soilPotassium = (Math.random() * (55 - 35)) + 35; // range from 8 to 1
+        soilCalcium = (Math.random() * (700 - 300)) + 300; // range from 8 to 1
+        soilMagnesium = (Math.random() * (70 - 30)) + 30; // range from 8 to 1
+        soilSulphur = (Math.random() * (20 - 10)) + 10; // range from 8 to 1
+        soilPH = (Math.random() * (2)); // range from 8 to 1
+        soilType = (Math.random() * (3)); // range from 8 to 1
         
 
         }
     public boolean Rain() {
         if (Math.random() <= 0.1) {
-            System.out.println("It rained Today!");
-            rainInCycle = (Math.random() * (8 - 1)) + 1;
+            rainInCycle = (Math.random() * (8 - 1)) + 1; // range from 8 to 1
             waterTotal += rainInCycle;
             return true;
         }
@@ -67,6 +66,6 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     }
 
     public void sunInCycleRandom() {
-        sunInCycle = (Math.random() * (14.5 - 2.5)) + 2.5;
+        sunInCycle = (Math.random() * (14.5 - 2.5)) + 2.5; // range from 8 to 1
     }
 }
