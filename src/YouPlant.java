@@ -28,7 +28,7 @@ public class YouPlant {
     private double SOIL_WIDTH = 800; 
     private double SOIL_HEIGHT = 500;
     private int MAX_DAYS = 100;
-    private int numDays = 1;
+    private static int numDays = 1;
     private List<Critter> critters;
     private final Random rand = new Random();
     private List<Class<? extends Critter>> critterClasses;
@@ -48,7 +48,7 @@ public class YouPlant {
     private void loadCritterClasses() {
         Reflections reflections = new Reflections(getClass().getPackage().getName());
         critterClasses = new ArrayList<>(
-            reflections.getSubTypesOf(Critter.class));
+        reflections.getSubTypesOf(Critter.class));
     }
  
 
@@ -56,7 +56,6 @@ public class YouPlant {
 
 private Critter addNewCritter(int buttonIndex) {
     Critter critter = createChoosenCritter(buttonIndex);
-
     GraphicsObject g = critter.getGraphics();
     Point point = randLocationFor(critter);
     g.setPosition(point.getX(), point.getY());
@@ -424,8 +423,16 @@ private Critter createChoosenCritter(int buttonIndex) {
                 numDays += 1;
                 System.out.println("Day" + numDays + ":");
                 System.out.println(critters.size());
+                System.out.println(critters.get(0).getGraphics().getSize());
                 for(Critter plant: critters) {
-                    
+                    if (plant.daysAlive() >= 1 && plant.daysAlive() < 2) {
+                        plant.stage2();
+                    }
+                    if (plant.daysAlive() >= 2) {
+                        plant.stage3();
+                    }
+                    plant.addOneDay();
+
                 }
                 
                 }
@@ -434,71 +441,8 @@ private Critter createChoosenCritter(int buttonIndex) {
         };
         nextDayButton.onClick(drawingKitRunnable);
     }
-    
-        // private void nextDay() {
-        //     for (Critter critter : critters) {
-        //         if (critter instanceof AmericanPlum) {
-        //             ((AmericanPlum) critter).nextDay();
-        //         }
-        //     }
-        // }
-   
+    public static double getNumDays() {
+        return numDays;
+    }
+
 }
-
-
-     //----------------------Go to the next day button---------------------//
-    //  private void nextDayButton() {
-    //     Button nextDayButton = new Button("Go to the next day");
-    //     nextDayButton.setPosition(15, 10);
-    //     canvas1.add(nextDayButton);
-    //     Runnable drawingKitRunnable = new Runnable() {
-    //         @Override
-    //         public void run() {
-    //             // numDays += 1;
-    //             // for (Plant p : Plants)
-                
-    //             // if all Environmental Conditions (except pH)
-    //         }
-    //     }}
-
-
-
-
-//------------------OPTIONS FOR PLANTS------------------------//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //     canvas.draw();
-        // Add soil to canvas (and background if we add one)
-        //Add buttons for options for user: (1) Plant
-        // (2) Monitor Soil/Water (3) Go to next day 
-        // When User creates a plant, provide them with the options 
-        // for the plants (or if it is easier for them to make their own 
-        // plants implement that). When user monitors soil/water quality, 
-        // collect results from soil and environmental factors 
-        // and then provide them the next day
-        // option 3 self explanatory
-        // record number of plants and plant stage/health in plant manager
-        // after max days have passed, stop game and tell user how well 
-        // they did
-
-    // }
-
-
-
-

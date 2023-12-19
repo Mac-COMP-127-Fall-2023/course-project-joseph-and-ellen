@@ -15,10 +15,11 @@ import edu.macalester.graphics.Point;
 @SuppressWarnings("WeakerAccess")
 public abstract class Critter {
     private final GraphicsGroup graphics;
-    private double speed;
+    // private double speed;
     // private List<Eye> eyes;
     // private List<Leg> legs;
     private Point goal;
+    private double daysAlive;
 
     // Some critters are drawn so that the upper left corner x, y, of its shape
     // might be negative. If so, these should be changed in the subclass to show that.
@@ -31,6 +32,7 @@ public abstract class Critter {
         // legs = new ArrayList<>();
         graphics = new GraphicsGroup(0, 0);
         buildGraphics();
+        daysAlive += 1;
     }
 
     /**
@@ -61,17 +63,21 @@ public abstract class Critter {
      */
     protected abstract void buildGraphics();
 
+    protected abstract void stage2();
+
+    protected abstract void stage3();
+
     public double getSize() {
         return Math.hypot(getGraphics().getWidth(), getGraphics().getHeight());
     }
 
-    public double getSpeed() {
-        return speed;
-    }
+    // public double getSpeed() {
+    //     return speed;
+    // }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
+    // public void setSpeed(double speed) {
+    //     this.speed = speed;
+    // }
 
     public Point getGoal() {
         return goal;
@@ -81,41 +87,11 @@ public abstract class Critter {
         this.goal = goal;
     }
 
-    // public void moveTowardsGoal(double dt) {
-    //     double dx = goal.getX() - getGraphics().getX(),
-    //            dy = goal.getY() - getGraphics().getY(),
-    //            dist = Math.hypot(dx, dy);
-    //     moveBy(
-    //         dx * getSpeed() / dist,
-    //         dy * getSpeed() / dist,
-    //         dt);
-    // }
+    public double daysAlive() {
+        return daysAlive;
+    }
 
-    // public void moveBy(double dx, double dy, double dt) {
-    //     graphics.moveBy(dx * dt, dy * dt);
-
-    //     for (Eye eye : eyes)
-    //         eye.lookInDirectionOf(dx, dy, dt);
-
-    //     for (Leg leg : legs)
-    //         leg.bodyMovedBy(dx * dt, dy * dt);
-    // }
-
-    /**
-     * Adds a leg to the critter.
-     */
-    // protected void addLeg(Leg leg) {
-    //     getGraphics().add(leg.getGraphics());
-    //     legs.add(leg);
-    //     leg.setAnchored(legs.size() % 2 == 0);
-    // }
-
-    /**
-     * Adds an eye to the critter.
-     */
-    // protected void addEye(Eye eye, double x, double y) {
-    //     eye.getGraphics().setPosition(x, y);
-    //     getGraphics().add(eye.getGraphics());
-    //     eyes.add(eye);
-    // }
+    public double addOneDay() {
+        return daysAlive = daysAlive + 1;
+    }
 }

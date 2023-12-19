@@ -15,42 +15,22 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     private double waterTotal;// in mm
     private double sunInCycle; // in hours
     private double sunTotal; // in hours
-    private double soilNitrogen; // in ppm
-    private double soilPhosphorous; // in ppm
-    private double soilPotassium; // in ppm
-    private double soilCalcium; // in ppm
-    private double soilMagnesium; // in ppm
-    private double soilSulphur; // in ppm
     private double soilPH; // 0 = acidic, 1= neutral, 2= basic
     private double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
     private ArrayList<Double> eF;
-    private Rectangle eFRectangle;
 
     public EnvironmentalFactors() {
         eF = new EnvironmentalFactors();
         eF.add(rainInCycle);
         eF.add(waterTotal);
-        eF.add(soilPH);
-        eF.add(soilPH);
         eF.add(sunInCycle);
         eF.add(sunTotal);
-        eF.add(soilNitrogen);
-        eF.add(soilPhosphorous);
-        eF.add(soilPotassium);
-        eF.add(soilCalcium);
-        eF.add(soilMagnesium);
-        eF.add(soilSulphur);
+        eF.add(soilPH);
         eF.add(soilType);
     }
 
     public void newRandomEnvFactors() {
         waterTotal = (Math.random() * (58 - 18)) + 18; // ranges from 58 to 18
-        soilNitrogen = (Math.random() * (75 - 35)) + 35; // range from 8 to 1
-        soilPhosphorous = (Math.random() * (58 - 32)) + 32; // range from 8 to 1
-        soilPotassium = (Math.random() * (55 - 35)) + 35; // range from 8 to 1
-        soilCalcium = (Math.random() * (700 - 300)) + 300; // range from 8 to 1
-        soilMagnesium = (Math.random() * (70 - 30)) + 30; // range from 8 to 1
-        soilSulphur = (Math.random() * (20 - 10)) + 10; // range from 8 to 1
         soilPH = (Math.random() * (2)); // range from 8 to 1
         soilType = (Math.random() * (3)); // range from 8 to 1
         
@@ -68,4 +48,29 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     public void sunInCycleRandom() {
         sunInCycle = (Math.random() * (14.5 - 2.5)) + 2.5; // range from 8 to 1
     }
+
+    public double getRainInCycle() {
+        return rainInCycle;
+    }
+
+    public double getWaterTotal() {
+        return waterTotal;
+    }
+
+    public double getSunInCycle() {
+        return sunInCycle;
+    }
+    public double getSunTotal() {
+        return sunTotal;
+    }
+
+    public double getSoilPH() {
+        return soilPH;
+    }
+
+    public double getSoilType() {
+        return soilType;
+    }
+
+
 }
