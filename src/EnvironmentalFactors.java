@@ -70,11 +70,11 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     }
 
     public void loseWater() {
-        waterTotal = waterTotal - 1;
+        waterTotal = waterTotal - 0.1;
     }
 
     public void addWater() {
-        waterTotal = waterTotal + 1;
+        waterTotal = waterTotal + 8;
     }
 
 }

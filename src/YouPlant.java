@@ -425,13 +425,11 @@ private Critter createChoosenCritter(int buttonIndex) {
             @Override
             public void run() {
                 numDays += 1;
-                System.out.println("Day" + numDays + ":");
-                System.out.println(critters.size());
-                System.out.println(critters.get(0).getGraphics().getSize());
                 environmentalFactors.rain();
+                if (critters.size() >= 1) {
                     for(Critter plant: critters) {
                         if (isAlive(plant)) {
-                            if (plant.daysAlive() >= 20 && plant.daysAlive() < 30) {
+                            if (plant.daysAlive() >= 15 && plant.daysAlive() < 25) {
                             plant.stage2();
                             }
                             if (plant.daysAlive() >= 40) {
@@ -442,12 +440,14 @@ private Critter createChoosenCritter(int buttonIndex) {
                         }
                         else {
                             canvas.remove(plant.getGraphics());
+                            critters.remove(plant);
                             environmentalFactors.addWater();
+                            break;
                         }
 
 
                     }
-                    System.out.println(critters.size());
+                }
 
             }
         };
@@ -466,7 +466,7 @@ private Critter createChoosenCritter(int buttonIndex) {
             Math.abs(plantManager.getIdealSunInCycle(0) - environmentalFactors.getSunInCycle()) +
             Math.abs(plantManager.getIdealWater(0) - environmentalFactors.getWaterTotal())) / 4));
             
-            if (factorsDif >= 7 && factorsDif <= 12) {
+            if (factorsDif >= 7 && factorsDif <= 14) {
                 plant.addEightDay();
                 return true;
                 
@@ -479,7 +479,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+        
             
         }
         if (plantName.equalsIgnoreCase("Bluestem")) {
@@ -502,7 +502,6 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
         }
         if (plantName.equalsIgnoreCase("CommonMilkWeed")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -524,7 +523,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("easternbottlebrushgrass")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -546,7 +545,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("goldenrod")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -568,7 +567,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("leadplant")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -590,7 +589,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("shagbarkhickory")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -612,7 +611,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("stjohnswort")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -634,7 +633,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         if (plantName.equalsIgnoreCase("sumac")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -656,7 +655,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+           
         }
         if (plantName.equalsIgnoreCase("tallmeadowrue")) {
             Double factorsDif = (Math.abs(Math.abs((
@@ -678,7 +677,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 plant.addHalfDay();
                 return true;
             }
-            System.out.println(factorsDif);
+            
         }
         return false;
     }
