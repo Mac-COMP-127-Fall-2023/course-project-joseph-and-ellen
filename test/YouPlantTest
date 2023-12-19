@@ -1,4 +1,4 @@
-package edu.macalester.comp127.cour;
+package edu.macalester.comp127.github.com.courseproject;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,41 +6,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YouPlantTest {
+public class EnvironmentalFactorsTest {
 
-    // TODO: Uncomment this test
     @Test
-    public void testEnvironmentalFactorsRange() {
+    public void testRandomEnvironmentalFactorsRange() {
         EnvironmentalFactors eF = new EnvironmentalFactors(rainInCycle, waterTotal, sunInCycle, soilPH, soilType);
         ef.newRandomEnvFactors();
     
-        ball.updatePosition(0.1);
-        assertEquals(107.071, ball.getCenterX(), 0.001);
-        assertEquals(92.9289, ball.getCenterY(), 0.001);
+        eF.getWaterTotal();
+        assertTrue(ef.getWaterTotal >= 18, ef.getWaterTotal <= 58);
     
-        ball.updatePosition(0.1);
-        assertEquals(114.142, ball.getCenterX(), 0.001);
-        assertEquals(85.9558, ball.getCenterY(), 0.001);
+        eF.getSoilPH();
+        assertTrue(ef.getWaterTotal >= 1, ef.getWaterTotal <= 2);
     
-        ball.updatePosition(0.1);
-        assertEquals(121.213, ball.getCenterX(), 0.001);
-        assertEquals(79.0807, ball.getCenterY(), 0.001);
+        eF.getSoilType();
+        assertTrue(ef.getWaterTotal >= 1, ef.getWaterTotal <= 3);
+    
+
+        eF.getSunInCycle();
+        assertTrue(ef.getWaterTotal >= 8, ef.getWaterTotal <= 1);
+
+        (Math.random() * (8 - 1)) + 1;
+        assertTrue(ef.getWaterTotal >= 8, ef.getWaterTotal <= 1);
+    
     }
 
-    @Test
-    public void testMyUpdatePosition() {
-        CannonBall ball = new CannonBall(300, 300, 60, 60, 1312, 1312);
-        ball.updatePosition(0.1);
-        assertEquals(303, ball.getCenterX(), 0.001);
-        assertEquals(294.803847577, ball.getCenterY(), 0.001);
-
-        ball.updatePosition(0.1);
-        assertEquals(306, ball.getCenterX(), 0.001);
-        assertEquals(289.70669515458675, ball.getCenterY(), 0.001);
-    
-        ball.updatePosition(0.1);
-        assertEquals(309, ball.getCenterX(), 0.001);
-        assertEquals(284.70554273188014, ball.getCenterY(), 0.001);
-
-    }
-}

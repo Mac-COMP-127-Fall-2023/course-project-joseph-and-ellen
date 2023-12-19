@@ -33,7 +33,6 @@ public class YouPlant {
     private List<Class<? extends Critter>> critterClasses;
     private static final boolean CAPTIONS_ENABLED = false;
     private EnvironmentalFactors environmentalFactors;
-    public double rainInCycle; // in mm
     public double waterTotal;// in mm
     public double sunInCycle; // in hours
     public double soilPH; // 0 = acidic, 1= neutral, 2= basic
@@ -43,7 +42,7 @@ public class YouPlant {
 
     public YouPlant() {
         critters = new ArrayList<>();
-        environmentalFactors = new EnvironmentalFactors(rainInCycle, waterTotal, sunInCycle, soilPH, soilType);
+        environmentalFactors = new EnvironmentalFactors(waterTotal, sunInCycle, soilPH, soilType);
         plantManager = new PlantManager();
         environmentalFactors.newRandomEnvFactors();
         mainScreen();

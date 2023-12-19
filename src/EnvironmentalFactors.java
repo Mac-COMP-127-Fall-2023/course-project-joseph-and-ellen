@@ -19,12 +19,10 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     private ArrayList<Double> environmentalFactors;
 
     public EnvironmentalFactors(
-        double rainInCycle, 
         double waterTotal, 
         double sunInCycle, 
         double soilPH, 
         double soilType) {
-        this.rainInCycle = rainInCycle;
         this.waterTotal = waterTotal;
         this.sunInCycle = sunInCycle;
         this.soilPH = soilPH;
@@ -74,7 +72,7 @@ public class EnvironmentalFactors extends ArrayList<Double> {
     }
 
     public void addWater() {
-        waterTotal = waterTotal + 8;
+        waterTotal = waterTotal + 15;
     }
 
 }
