@@ -39,26 +39,11 @@ public class YouPlant {
     public double soilPH; // 0 = acidic, 1= neutral, 2= basic
     public double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
     private PlantManager plantManager;
-    private ArrayList<Double> americanPlumFactors;
-    private ArrayList<Double> blueStemFactors;
-    private ArrayList<Double> commonMilkWeedFactors;
-    private ArrayList<Double> easternBottleBrushGrassFactors;
-    private ArrayList<Double> goldenRodFactors;
-    private ArrayList<Double> leadPlantFactors;
-    private ArrayList<Double> shagBarkHickoryFactors;
-    private ArrayList<Double> stJohnWortFactors;
-    private ArrayList<Double> sumacFactors;
-    private ArrayList<Double> tallMeadowRueFactors;
 
 
     public YouPlant() {
         critters = new ArrayList<>();
-        environmentalFactors = new EnvironmentalFactors();
-        environmentalFactors.add(rainInCycle);
-        environmentalFactors.add(waterTotal);
-        environmentalFactors.add(sunInCycle);
-        environmentalFactors.add(soilPH);
-        environmentalFactors.add(soilType);
+        environmentalFactors = new EnvironmentalFactors(rainInCycle, waterTotal, sunInCycle, soilPH, soilType);
         plantManager = new PlantManager();
         environmentalFactors.newRandomEnvFactors();
         mainScreen();
@@ -446,7 +431,7 @@ private Critter createChoosenCritter(int buttonIndex) {
                 environmentalFactors.rain();
                     for(Critter plant: critters) {
                         if (isAlive(plant)) {
-                            if (plant.daysAlive() >= 20 && plant.daysAlive() < 40) {
+                            if (plant.daysAlive() >= 20 && plant.daysAlive() < 30) {
                             plant.stage2();
                             }
                             if (plant.daysAlive() >= 40) {
@@ -456,10 +441,13 @@ private Critter createChoosenCritter(int buttonIndex) {
                             environmentalFactors.loseWater();
                         }
                         else {
-                            plant.remove();
+                            critters.remove(plant);
+                            canvas.remove(plant);
                         }
 
+
                     }
+                    System.out.println(critters.size());
 
             }
         };
@@ -472,449 +460,226 @@ private Critter createChoosenCritter(int buttonIndex) {
     public boolean isAlive(Critter plant) {
         String plantName = plant.getClass().getName();
         if (plantName.equalsIgnoreCase("AmericanPlum")) {
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 2.5 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 2.0) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(0) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(0) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(0) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(0) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
                 plant.addEightDay();
                 return true;
+                
             }
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 2.0 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 1.5) {
+            if (factorsDif >= 4 && factorsDif <= 7) {
                 plant.addFourthDay();
                 return true;
             }
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 1.5 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 1.0) {
+            if (factorsDif < 4) {
                 plant.addHalfDay();
                 return true;
             }
+            System.out.println(factorsDif);
             
         }
         if (plantName.equalsIgnoreCase("Bluestem")) {
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 2.5 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 2.0) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(1) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(1) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(1) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(1) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
                 plant.addEightDay();
                 return true;
+                
             }
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 2.0 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 1.5) {
+            if (factorsDif >= 4 && factorsDif <= 7) {
                 plant.addFourthDay();
                 return true;
             }
-            if (Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            <= 1.5 && Math.abs(Math.abs((
-            plantManager.getIdealSoilPH(blueStemFactors) - environmentalFactors.getSoilPH()) + 
-            Math.abs(plantManager.getIdealSoilType(blueStemFactors) - environmentalFactors.getSoilType()) +
-            Math.abs(plantManager.getIdealSunInCycle(blueStemFactors) - environmentalFactors.getSunInCycle()) +
-            Math.abs(plantManager.getIdealWater(blueStemFactors) - environmentalFactors.getWaterTotal())) / 4)
-            >= 1.0) {
+            if (factorsDif < 4) {
                 plant.addHalfDay();
                 return true;
             }
+            System.out.println(factorsDif);
         }
-        // if (plantName.equalsIgnoreCase("CommonMilkWeed")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("easternbottlebrushgrass")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("goldenrod")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("leadplant")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("shagbarkhickory")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("stjohnswort")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("sumac")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
-        // if (plantName.equalsIgnoreCase("tallmeadowrue")) {
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 2.0) {
-        //         plant.addEightDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 2.0 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.5) {
-        //         plant.addFourthDay();
-        //         return true;
-        //     }
-        //     if (Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     <= 1.5 && Math.abs(Math.abs((
-        //     plantManager.getIdealSoilPH(americanPlumFactors) - environmentalFactors.getRainInCycle()) + 
-        //     Math.abs(plantManager.getIdealSoilType(americanPlumFactors) - environmentalFactors.getSoilType()) +
-        //     Math.abs(plantManager.getIdealSunInCycle(americanPlumFactors) - environmentalFactors.getSunInCycle()) +
-        //     Math.abs(plantManager.getIdealWater(americanPlumFactors) - environmentalFactors.getWaterTotal())) / 4)
-        //     >= 1.0) {
-        //         plant.addHalfDay();
-        //         return true;
-        //     }
-        // }
+        if (plantName.equalsIgnoreCase("CommonMilkWeed")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(2) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(2) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(2) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(2) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("easternbottlebrushgrass")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(3) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(3) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(3) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(3) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("goldenrod")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(4) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(4) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(4) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(4) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("leadplant")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(5) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(5) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(5) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(5) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("shagbarkhickory")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(6) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(6) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(6) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(6) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("stjohnswort")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(7) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(7) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(7) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(7) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("sumac")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(8) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(8) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(8) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(8) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
+        if (plantName.equalsIgnoreCase("tallmeadowrue")) {
+            Double factorsDif = (Math.abs(Math.abs((
+            plantManager.getIdealSoilPH(8) - environmentalFactors.getSoilPH()) + 
+            Math.abs(plantManager.getIdealSoilType(8) - environmentalFactors.getSoilType()) +
+            Math.abs(plantManager.getIdealSunInCycle(8) - environmentalFactors.getSunInCycle()) +
+            Math.abs(plantManager.getIdealWater(8) - environmentalFactors.getWaterTotal())) / 4));
+            
+            if (factorsDif >= 7 && factorsDif <= 12) {
+                plant.addEightDay();
+                return true;
+                
+            }
+            if (factorsDif >= 4 && factorsDif <= 7) {
+                plant.addFourthDay();
+                return true;
+            }
+            if (factorsDif < 4) {
+                plant.addHalfDay();
+                return true;
+            }
+            System.out.println(factorsDif);
+        }
         return false;
     }
-
-
-
 }

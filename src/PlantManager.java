@@ -89,19 +89,19 @@ public class PlantManager {
     }
     
 
-    public double getIdealWater(ArrayList<Double> typePlantFactors) {
-        return typePlantFactors.get(0);
+    public double getIdealWater(int plantFactorIndex) {
+        return plantFactors.get(plantFactorIndex).get(0);
     }
 
-    public double getIdealSunInCycle(ArrayList<Double> typePlantFactors) {
-        return typePlantFactors.get(1);
+    public double getIdealSunInCycle(int plantFactorIndex) {
+        return plantFactors.get(plantFactorIndex).get(1);
     }
 
-    public double getIdealSoilPH(ArrayList<Double> typePlantFactors) {
-        return typePlantFactors.get(2);
+    public double getIdealSoilPH(int plantFactorIndex) {
+        return plantFactors.get(plantFactorIndex).get(2);
     }
 
-    public double getIdealSoilType(ArrayList<Double> typePlantFactors) {
-        return typePlantFactors.get(3);
+    public double getIdealSoilType(int plantFactorIndex) {
+        return plantFactors.get(plantFactorIndex).get(3);
     }
 }

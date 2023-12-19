@@ -11,20 +11,24 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class EnvironmentalFactors extends ArrayList<Double> {
-    public double rainInCycle; // in mm
-    public double waterTotal;// in mm
-    public double sunInCycle; // in hours
-    public double soilPH; // 0 = acidic, 1= neutral, 2= basic
-    public double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
-    public ArrayList<Double> environmentalFactors;
+    private double rainInCycle; // in mm
+    private double waterTotal;// in mm
+    private double sunInCycle; // in hours
+    private double soilPH; // 0 = acidic, 1= neutral, 2= basic
+    private double soilType; // 1 is sand, 2 is silt, 3 is loam, 4 is clay
+    private ArrayList<Double> environmentalFactors;
 
-    public EnvironmentalFactors() {
-        environmentalFactors = new EnvironmentalFactors();
-        environmentalFactors.add(rainInCycle);
-        environmentalFactors.add(waterTotal);
-        environmentalFactors.add(sunInCycle);
-        environmentalFactors.add(soilPH);
-        environmentalFactors.add(soilType);
+    public EnvironmentalFactors(
+        double rainInCycle, 
+        double waterTotal, 
+        double sunInCycle, 
+        double soilPH, 
+        double soilType) {
+        this.rainInCycle = rainInCycle;
+        this.waterTotal = waterTotal;
+        this.sunInCycle = sunInCycle;
+        this.soilPH = soilPH;
+        this.soilPH = soilPH;
     }
 
     public void newRandomEnvFactors() {
@@ -65,9 +69,8 @@ public class EnvironmentalFactors extends ArrayList<Double> {
         return soilType;
     }
 
-    public double loseWater() {
-        return waterTotal = waterTotal - 0.5;
+    public void loseWater() {
+        waterTotal = waterTotal - 1;
     }
-
 
 }
