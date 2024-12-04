@@ -1,0 +1,33 @@
+package edu.macalester.comp127.github.com.courseproject;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class EnvironmentalFactorsTest {
+
+    @Test
+    public void testRandomEnvironmentalFactorsRange() {
+        EnvironmentalFactors eF = new EnvironmentalFactors(rainInCycle, waterTotal, sunInCycle, soilPH, soilType);
+        ef.newRandomEnvFactors();
+    
+        eF.getWaterTotal();
+        assertTrue(ef.getWaterTotal >= 18, ef.getWaterTotal <= 58);
+    
+        eF.getSoilPH();
+        assertTrue(ef.getWaterTotal >= 1, ef.getWaterTotal <= 2);
+    
+        eF.getSoilType();
+        assertTrue(ef.getWaterTotal >= 1, ef.getWaterTotal <= 3);
+    
+
+        eF.getSunInCycle();
+        assertTrue(ef.getWaterTotal >= 8, ef.getWaterTotal <= 1);
+
+        (Math.random() * (8 - 1)) + 1;
+        assertTrue(ef.getWaterTotal >= 8, ef.getWaterTotal <= 1);
+    
+    }
+
